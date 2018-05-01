@@ -10,4 +10,10 @@ class Worker extends Model
         'name', 'surname', 'patronymic', 'position', 'work_start', 'salary', 'parent_id'
     ];
     public $timestamps = false;
+
+    public function image(){
+      return $this->hasOne('App\Image');
+    }
+
+
 }

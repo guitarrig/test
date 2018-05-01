@@ -25,4 +25,6 @@ Route::middleware('auth')->group(function(){
   Route::match(['get', 'post'], '/table', 'WorkersController@index')->name('table');
   Route::post('/search', 'WorkersController@search')->name('search');
   Route::resource('/workers', 'WorkersController', ['except' => 'index']);
+  Route::post('/image/add', 'ImagesController@add')->name('image.add');
+  Route::post('/image/change', 'ImagesController@change')->name('image.change');
 });

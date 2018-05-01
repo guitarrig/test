@@ -9,7 +9,35 @@
                  <center><h3>Info</h3></center>
                </div>
 
+
                <div class="card-body">
+                 @if(isset($worker->image))
+
+                <img src="{{$worker->image->name}}" class="img-thumbnail rounded-circle" style="width:200px;height:200px;" alt="...">
+                <form method="post" action="{{route('image.change')}}" enctype="multipart/form-data" >
+                  @csrf
+                 <div class="form-group">
+                   <input type="hidden" name="id" value="{{$worker->id}}">
+                   <label for="exampleFormControlFile1">Change photo</label><br>
+                   <input type="file" id="exampleFormControlFile1" name="image">
+                   <input type="submit" value="Upgrade!" class="btn btn-outline-success">
+                 </div>
+               </form>
+
+                @else
+
+                <form method="post" action="{{route('image.add')}}" enctype="multipart/form-data" >
+                  @csrf
+                 <div class="form-group">
+                   <input type="hidden" name="id" value="{{$worker->id}}">
+                   <label for="exampleFormControlFile1">Add a photo</label><br>
+                   <input type="file" id="exampleFormControlFile1" name="image">
+                   <input type="submit" value="Save!" class="btn btn-outline-info">
+                 </div>
+               </form>
+
+                @endif
+
                 <p> Name: {{$worker->name}}</p>
                  <p>Surname: {{$worker->surname}}</p>
                  <p>Patronymic: {{$worker->patronymic}}</p>

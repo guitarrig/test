@@ -17,10 +17,16 @@ class WorkersController extends Controller
     public function index(Request $request)
     {
         if ($request->isMethod('get')) {
-          $workers = DB::select('SELECT * FROM workers ORDER BY id');
+          $workers = DB::select('SELECT w.id, w.name, w.surname, w.salary, w.patronymic,
+                                        w.position, w.work_start, w.parent_id, i.name as path
+                                 FROM `workers` as w left join images as i  on w.id=i.worker_id
+                                 ORDER by w.id');
           // $workers = Worker::orderBy('id')->get();
         }else {
-          $workers = DB::select('SELECT * FROM workers ORDER BY ' . $request->order_by . ', id');
+          $workers = DB::select('SELECT w.id, w.name, w.surname, w.salary, w.patronymic,
+                                        w.position, w.work_start, w.parent_id, i.name as path
+                                 FROM `workers` as w left join images as i  on w.id=i.worker_id
+                                 ORDER BY ' . $request->order_by . ', id');
           // $workers = Worker::orderBy($request->order_by)->orderBy('id')->get();
         }
         // dd($workers);

@@ -52,6 +52,7 @@
                  <table class="table">
                   <thead class="thead-dark">
                    <tr>
+                     <th scope="col">Photo</th>
                      <th scope="col">Id</th>
                      <th scope="col">Name</th>
                      <th scope="col">Surname</th>
@@ -64,7 +65,13 @@
                   </thead>
                     <tbody>
                       @foreach($workers as $worker)
+
                       <tr>
+                        @if(!is_null($worker->path))
+                        <td><img src="{{$worker->path}}" class="img-thumbnail rounded-circle" style="width:40px;height:40px;" alt="..."></td>
+                        @else
+                        <td>-</td>
+                        @endif
                         <th scope="row"><a href="{{route('workers.show', $worker->id)}}">{{$worker->id}}</a></th>
                         <td><a href="{{route('workers.show', $worker->id)}}">{{$worker->name}}</a></td>
                         <td>{{$worker->surname}}</td>
