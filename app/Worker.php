@@ -9,4 +9,5 @@ class Worker extends Model
     protected $fillable = [
         'name', 'surname', 'patronymic', 'position', 'work_start', 'salary', 'parent_id'
     ];
+    public $timestamps = false;
 }

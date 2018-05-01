@@ -7,6 +7,12 @@
            <div class="card" style="width:830px">
                <div class="card-header">
                  <center><h3>Workers Table</h3></center>
+
+                 <form method="POST"  action="{{route('workers.create')}}">
+                   @csrf
+                   @method('GET')
+                   <input type="submit" value="Create worker" class="btn btn-outline-success">
+                 </form>
                  <form method="POST" action="{{route('search')}}" >
                    @csrf
                    <div class="form-inline">
@@ -14,13 +20,9 @@
                    <input type="submit" value="Search" class="btn btn-outline-primary">
                  </div>
                  </form>
-                 <form method="POST"  action="{{route('workers.create')}}">
-                   @csrf
-                   @method('GET')
-                   <input type="submit" value="Create">
-                 </form>
 
-                 <form action="{{route('workers')}}" method="POST" id="order_by">
+
+                 <form action="{{route('table')}}" method="POST" id="order_by">
                    @csrf
                  </form>
 

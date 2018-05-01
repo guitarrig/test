@@ -59,7 +59,13 @@ class WorkersController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->position);
+        // dd($request->work_start);
+        Worker::insert(['name' => $request->name, 'surname' => $request->surname,
+                        'patronymic' => $request->patronymic, 'position' => $request->position,
+                        'work_start' => $request->work_start, 'salary' => $request->salary,
+                        'parent_id' => $request->parent_id
+        ]);
+      return redirect('/table');
     }
 
     /**
@@ -70,8 +76,8 @@ class WorkersController extends Controller
      */
     public function show($id)
     {
-        // $worker = Worker::find($id)->first();
-        // return view('workers.show', ['worker' => $worker]);
+        $worker = Worker::find($id);
+        return view('workers.show', ['worker' => $worker]);
     }
 
     /**
@@ -82,7 +88,8 @@ class WorkersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $worker = Worker::find($id);
+        return view('workers.edit', ['worker' => $worker]);
     }
 
     /**
@@ -94,7 +101,12 @@ class WorkersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Worker::where('id', $id)->update(['name' => $request->name, 'surname' => $request->surname,
+                        'patronymic' => $request->patronymic, 'position' => $request->position,
+                        'work_start' => $request->work_start, 'salary' => $request->salary,
+                        'parent_id' => $request->parent_id
+        ]);
+        return redirect('/workers' ."/$id");
     }
 
     /**
@@ -105,6 +117,7 @@ class WorkersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Worker::where('id', $id)->delete();
+        return redirect('/table');
     }
 }

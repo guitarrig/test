@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function(){
   Route::get('/tree', 'TreeController');
-  Route::match(['get', 'post'], '/workers', 'WorkersController@index')->name('workers');
+  Route::match(['get', 'post'], '/table', 'WorkersController@index')->name('table');
   Route::post('/search', 'WorkersController@search')->name('search');
   Route::resource('/workers', 'WorkersController', ['except' => 'index']);
 });

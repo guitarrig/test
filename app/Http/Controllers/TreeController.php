@@ -20,8 +20,9 @@ class TreeController extends Controller
 		}
 
 		$workers = self::arrayToTree($array);
+		$key = array_keys($workers);
 
-		return view('tree', ['workers' => $workers[1]]);
+		return view('tree', ['workers' => $workers[$key[0]]]);
 	}
 
 
